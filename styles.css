@@ -375,6 +375,14 @@ a {
     margin-top: 10px;
     display: block;
   }
+  .vid{
+    width:100%;
+  }
+}
+
+.iframe{
+  width: 640px;
+  height: 360px;
 }
 
 .full-width{
