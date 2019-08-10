@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inference Model Training</title>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Heebo|Lato&display=swap" rel="stylesheet">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+    
+  </head>
+
+  <header>
+      <div class="navbar">
+        <ul>
+          <li><a class="active" href="index.html">Shawna</a></li>
+          <li><a href="index.html">Work</a></li>
+        </ul>
+      </div>
+  </header>
+
+<body style="background-color: white;">
+  
+<div class="container">
+            <nav class="toc toc-right js-toc relative z-1 transition--300 absolute pa4"></nav>
+            <div class="content js-toc-content pa4"><h1 class="dn"></h1>
+
+<div class="vp">
+<div class="page">
+    <div class="wrap">
+        <div class="invis-border" style="margin-top:5em; text-align:center;">
+            <h1>Inference Model Training</h1>
+                    <p> <strong>Case Study:</strong> Feature release <span style="color:#0000ff73;">/</span> <strong>My roles:</strong> Interaction Design, UI design</p> 
+        </div>
+          
+<div><img class="img-container" src="images/ae.png" alt="Inference Model Training" style="width:100%"></div>
+  
+
+  <div class="intro-stats" style="margin-top: 5em">
+    <h2 id="1">Intro</h2>
+    <p>The OpsRamp 5.2 release introduced new features for their AIOps engine that uses machine learning to automatically create incident tickets to swiftly alert the right on-call teams during an outage. Users can train these learning models with their own training data. I worked with the AIOps product team to <span class="highlight">design and integrate the custom interface and to define the machine learning user experience.</span>
+        </p></div>
+
+  
+  
+  <div class="research">
+    <h2 id="2">Problem space & research</h2>
+    <p>To have a deeper understanding of the paint points surrounding managing alerts, I first consolidated research from speaking to IT and DevOps experts and users to map out the <span class="highlight">typical workflow for alert management and which critical points within the workflow that can be optimized by automation.</span></p></div>
+    <div><img class="full-width" src="images/am-workflow.png" alt="Alert management workflow with AIOps integrated" style="width:100%"></div>
+
+    
+
+<div class="invis-border">
+    <div class="quote" style="border-left: 3px solid #0000ff73; color:rgb(92, 92, 92)"><p style="padding-left:2em;">A quick lesson on terminology: 
+      <ul>
+        <li>Event: A change to the normal behavior in an environment.</li>
+        <li>Alert: A notification that an event(s) has taken place.</li>
+        <li>Incident: An event that negatively impacts an organization.</li>
+      </ul>
+    </p></div>
+  </br>
+    <p>In a traditional DevOps alert management workflow, each step requires someone to step in and address it. Despite DevOps adoption models having shown to work well, especially in smaller teams and environments, <span class="highlight">a rules-based approach doesn't easily scale up at an enterprise level.</span> With changes in infrastructure happening multiple times a day, the average time spent across task flows, per ingested alert, increases disproportionately with the number of incoming alerts. Instead, AIOps allows for <span class="highlight">automation of these tasks which means alerts don’t have to be manually dealt with.</span></p>
+    </div>
+
+  <div><img class="full-width" src="images/am-infmodel.png" alt="Inference model chart" style="width:100%;"></div>
+
+<div class="invis-border">
+  <h3>An AIOps workflow</h3>  
+    <p>AIOps takes incoming alerts and groups related alerts into inferences, and then creates a model to make predictions based on these patterns. Users can import their own datasets to bootstrap an inference model. Instead of addressing individual alerts, DevOps teams can manage these inference models.</p>
+      <p><span class="highlight">I worked with the developer and architect to design the end-to-end flow and the interface for the inference models:</span> how users navigate to create and define alert escalation policies, and to train the inference models within those policies.</p>
+</div>
+
+<div class="dp">
+  <h2 id="3">User Flow</h2>
+  <p>
+    I mapped out the steps that are involved in creating an alert escalation policy.
+  </p>
+</div>
+
+<div><img class="full-width" src="images/am_userflow.png" alt="Alert management workflow with AIOps integrated" style="width:100%;"></div> 
+
+
+<div class="invis-border"><br/>
+  <h2 id="4">Design</h2>
+  <p>The bulk of my work with the alert escalation policy creation flow was to design the model training section. In the model training section, <span class="highlight">users can iteratively change their dataset</span> with data transformation steps until the dataset works well for building a good inference model. The data transformation steps are fundamentally written with the structural conventions of a normal programming language, but the users who tend to manage and create these policies are admin and business users who don't necessarily have a background in data science or programming. So, <span class="highlight">my goal was to design this data wrangling tool to be accessible for a non-technical crowd.</span>
+  </p><br/>
+  <h3 id="5">Train model interface</h3>
+  <p>After users have selected their datasets, they are brought to the "Train model" module where they can clean up the dataset and iteratively train it to see how accurate or effective the learned model is (as shown by the confidence percentage).</p>
+</div>
+
+<div><img class="full-width" src="images/trainmodel.gif" style="width:100%" alt="Train model interface"></div>
+
+  <div class="invis-border">
+  <h3 id="6">Design for data literacy</h3>
+  <p><span class="highlight">One of the more difficult challenges was to design a way for non-technical users to build their own custom functions from scratch.</span> I worked with the developer to consider all the possible combinations of custom functions a user could create using the functions we would support. Then, <span class="highlight">we translated code to pseudo-code to conversational English.</span> </p><p>Using the custom data transformation fields, the user first creates a condition (if/else if/else statement), and then specifies what modification is applied because of the condition.</p></div>
+  <div><img class="full-width" src="images/customdt.png" alt="Alert management workflow with AIOps integrated" style="width:100%;"><br/><br/></div> 
+
+  <div class="poc">
+    <h2 id="7">Feature rollout</h2>
+    <p>Auto-incident creation and routing, as well as the augmented training for inference models, rolled out during the Winter 2019 release. View the demo on the <a href="https://www.youtube.com/watch?v=QvtKQBovZJ4">Webinar</a> introducing all other feature releases.
+        </p>
+  </div>
+
+  <br/><br/>
+
+<div class="next-steps">
+      <h2 id="8">What I learned</h2>
+<p> <strong>There's rarely a one-size-fits all solution when designing tables for enterprise applications:</strong> Though we referred to many guidelines and resources online at the start of designing the table components, our design became increasingly complex even as we descoped our use cases. <span class="highlight">Ultimately, the best solution was to continually get feedback from the users to alter the design as needed.</span></br></br>
+<strong>Design plays a huge role in making big data more accessible:</strong> When the non-technical professional is also equipped with the right tools, they get more comprehensive insights from their data. When we were coming up with the different possible custom functions, we realized that different users had unique ways of writing their own. <span class="highlight">Designing a way to make this process consistent and easier via a simple interface meant that there was less effort a single user spent on amassing a personal library of custom functions that no one else would be able to use.</span>
+</p>
+</div>
+</div>
+
+
+
+
+  <script src="js/jquery.min.jis"></script> 
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+  <script>
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+      });
+        </script>
+ </body>
+
+</html>

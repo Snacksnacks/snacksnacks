@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cloud Cost Dashboard</title>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Heebo|Lato&display=swap" rel="stylesheet">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+    
+  </head>
+
+  <header>
+      <div class="navbar">
+        <ul>
+          <li><a class="active" href="index.html">Shawna</a></li>
+          <li><a href="index.html">Work</a></li>
+        </ul>
+      </div>
+  </header>
+
+<body style="background-color: white;">
+
+<div class="container">
+            <nav class="toc toc-right js-toc relative z-1 transition--300 absolute pa4"></nav>
+            <div class="content js-toc-content pa4"><h1 class="dn"></h1>
+
+<div class="vp">
+    <div class="page">
+        <div class="wrap">
+            <div class="invis-border" style="margin-top:5em; text-align:center;">
+            <h1 id="1">Multi-Cloud Dashboard</h1>
+            <p> <strong>Case Study:</strong> Feature release <span style="color: #0000ff73">/</span> <strong>My role:</strong> Interaction Design, UI design</p> 
+            </div>
+
+  <div><img class="img_container" src="images/mcv-dash.png" alt="Multi-cloud visibility dashboard" style="width:100%"></div>
+
+  <div class="proj-intro">
+    <h2 id="2">Intro</h2>
+    <p>To help service owners and DevOps teams gain better visibility over their cloud-directed spending, OpsRamp created 3 widgets for cost analytics (article link). However, the widgets were designed from a technical perspective with the intention of making them generic and all-purpose. <span class="highlight">This level of customization resulted in a busy dashboard where important information got buried.</span> I worked with the cloud product team and engineers to rethink the widgets' underlying use cases and to map it to user needs. Part 2 of the design was around <span class="highlight">turning the dashboard from a view-only overview to something more actionable.</span></p>
+  </div>
+
+  <div class="research">
+    <h2 id="3">Problem space & research</h2>
+    <p>We met with our clients and the users to discuss the problems and needs in further depth. Based on the research, I laid out the <span class="highlight">3 main users, what their goals are with managing cloud cost, and how that fits into the business goals of their entire organization.</span></p></div>
+
+    <div><img class="full-width" src="images/mcv-personas.png" alt="Business Process" style="width:100%"></div>
+
+<div class="invis-border">
+  <p>In order to get a deeper understanding of how these 3 user types manage cloud costs, we needed to know <span class="highlight">where the pain points lie within the process of adopting a cloud strategy in the first place:</span></p>
+    <ul>
+        <li><strong>Variability across cloud providers:</strong> Having multiple cloud providers requires you to log into multiple consoles to view service status, track performance insights, set thresholds, and manage alerts for your cloud services. Different cloud providers define their performance metrics and cost usage units differently.</li>
+        <li><strong>Resource usage:</strong> Organizations don’t get a full snapshot into how their cloud resource usage affects their performance. What's the best use of resources and how many of those resources are being consumed?</li>
+    </ul>
+    <p>Similarly, <span class="highlight">the complexity of adopting a multi-cloud strategy can create organizational gaps</span>, namely due to the following 2 factors:</p>
+    <ul>
+        <li><strong>Spikes in cost:</strong> High costs is not necessarily the concern, but rather it’s the unexpected spikes in cost and the invariability of the next bill. Newer organizations that haven't yet architected a strong cloud strategy may have unreliable cost forecasts.</li>
+        <li><strong>Cost understanding:</strong> As more organizations are moving to cloud, they lack the organizational processes in finding the best approach to managing costs. Many don’t calculate the ROI from switching to cloud.</li>
+    </ul>
+  </div>
+
+  <div class="research">
+    <h2 id="4">Narrowing the scope</h2>
+    <p>In order to narrow our scope, we decided to focus on parts and critical spares to ship a fully functional MVP by the 5.0 release. I compiled the research to create a <span class="highlight">process map of the users’ business process for monitoring and managing cloud costs.</span></p></div>
+    <div><img class="full-width" src="images/shawna_ccd_bizprocess.png" alt="Business Process" style="width:100%"></div>
+<div class="invis-border"><p>In chronological order, the following 5 bullets <span class="highlight">go into detail of the critical points in the business process that can help improve cloud cost-efficiency</span> and consequently, build a better cloud strategy by giving more relevant cost analytics.</p></div>
+    <div class="invis-border">
+    <ol>
+      <li><strong>Surface all the assets:</strong> Map where all the IT assets are distributed across datacenters. Filter the map by resource type or cloud provider.
+        </li>
+      <li><strong>Standardize all tags attached to assets:</strong> Fetch the resources tags from cloud providers and augment them as custom attributes so they’re all consistent and relevant to your team.</li>
+      <li><strong>Give insights to those assets:</strong> Show where the money is being spent and which business units or services are spending it. Filter using the tags you just defined.</li>
+      <li><strong>Analyze those insights:</strong> Let teams configure with any combination of tags to analyze historical spending data and patterns.</li>
+      <li><strong>Alert when costs exceed budget:</strong> Let teams define policies on budgets for a cloud account or a tag value (like a business unit) and then notify relevant stakeholders when actual spending exceeds the defined thresholds.</li>
+    </ol><br/><br/>
+  </div>
+
+<div class="dp">
+  <h2 id="5">Design goals</h2>
+  <p>Before we started talking about the design of the dashboard, we needed to understand how we would display all these data points. All user types <span class="highlight">need to be able to log in to one console and see all significant insights at a glance.</span> Because of the varying nature of each users’ needs, we needed to allow the user to arrange these data points based on their priorities. These were the design principles that I designed the dashboard after:
+  <ul>
+    <li>Contain all relevant information to one page.</li>
+    <li>Display information in a logical and hierarchical layout.</li>
+    <li>Limit to 10 visualizations but allow drill down to get deeper insights.</li>
+    <li>Use the appropriate type of data visualization but allow customizability.</li>   
+  </ul>
+
+  </p>
+</div>
+   
+<div class="img_container">
+    <div><img class="container_image" src="images/Swimlanes_mcv.png" alt="Cloud cost trend widget"></div>
+    <div class="container_text">
+        <h3 id="6">Squint test: Bar charts show change and differences better.</h3>
+        <p>We re-evaluated the types of data visualization we used for each type of data. I surveyed users to see whether donut charts or bar charts would better convey change and differences in cloud costs. <span class="highlight">The bar chart was the winner: Viewing the charts in grayscale amplified this sentiment.</span> Hues of the colors become too close to differentiate when they are converted to grayscale.</p>
+          </br></br>
+          <h3 id="7">The type of chart should be pre-determined.</h3><p>Initially we allowed the chart type customizable as a means of keeping the widgets generic and multi-purpose, but <span class="highlight">pre-determining the chart type based on their widget criteria made it one less thing for the user to think about.</span></p>
+    </div>
+</div>
+
+<div class="finaldesign">
+<h2 id="8">Visual design</h2>
+<p>The visual designs were presented internally and showcased to clients for further user feedback.</p>
+</div>
+
+<div class="img_container">
+  <div><img class="container_image" src="images/globalAssetsWidget.png" alt="Cloud cost trend widget"></div>
+  <div class="container_text">
+      <h3 id="9">See where your assets are globally</h3>
+      <p>Distribution of IT assets are mapped by data center and regions. You can drill down on each region to view the specific assets categorized by cloud provider. Couple this with the asset availability widget to see where your resources are down.</p>
+      <p style="font-size:13px">This gives a quick look at where your assets are being distributed with the option of drilling down to see details.</p>
+  </div>
+</div><br/><br/>
+
+<div class="img_container">
+  <div><img class="container_image" src="images/Configure_widget.png" alt="Cloud cost trend widget" style="float:right;"></div>
+  <div class="container_text" style="padding-right: 2em;">
+      <h3 id="10">See if you're forecasting correctly</h3>
+      <p>View your cloud cost trends over time by resource type, tags, or other criteria.</p>
+      <p style="font-size:13px">A trendline can overlay another relevant metric, in this case to see if the actual spend lays within the budget.</p>
+  </div>
+</div><br/><br/>
+
+<div class="img_container">
+  <div><img class="container_image" src="images/CostInsights.png" alt="Cloud cost trend widget"></div>
+  <div class="container_text">
+      <h3 id="11">See how much you're spending on cloud</h3>
+      <p>Cloud cost insights can be configured for a given period (last month, MTD, YTD, etc.) as well as for a specific provider type, cloud account/project, or tag value.</p>
+      <p style="font-size:13px">Using a bar chart, as opposed to a pie chart, made changes in spending more noticeable. Dialing down the colors and using a monochromatic color scheme made the data less of a distraction; to emphasize change, one bar can be highlighted.</p>
+  </div>
+</div><br/><br/>
+
+  <div class="poc">
+    <h2 id="12">Part 1: Rollout</h2><h4>Communicate relevant cloud cost data</h4>
+    <p><span class="highlight">The multi-cloud visibility dashboard rolled out in June 2018 as part of the 5.0 release.</span> The tool ingests cost data from cloud providers (i.e. AWS, Azure, and Google) through standard APIs. We then apply the right intelligence to extract cloud cost insights, namely the spending trends across cloud providers, business units, IT services, and for their entire enterprise. </br></br>
+      <li><strong>The Global Assets widget</strong>shows a geographical distribution of IT assets across datacenter and cloud environments.</li>
+    <li><strong>The Cloud Cost Insights widget</strong> shows public cloud spend to date, with a breakdown by cloud account, by custom attributes, and other criteria.</li>
+    <li><strong>The Cloud Cost Trend widget</strong> presents public cloud cost trends over time, enabling IT teams to access cost trends by resource type, custom attributes, and other criteria.</li>
+        </p>
+  </div>
+
+  <br/><br/>
+
+  <div class="poc">
+      <h2 id="13">Part 2: Role-based dashboards</h2>
+      With a dashboard of widgets that can give an overview of cloud cost, we needed to turn a view-only overview into an actionable control center. Additionally, we wanted to make these dashboards even more catered towards the user type. I worked with the cloud PM and our clients to figure out <span class="highlight">how we could allow drill down of the dashboard information and how we could introduce role-based templates.</span></br></br>
+      <i>I have omitted and obfuscated confidential information regarding part 2 developments as the work surrounding this has not been released publicly.</i>
+          </p>
+    </div>
+  
+    <br/><br/>
+
+
+<div class="next-steps">
+  <h2 id="14">What I learned</h2>
+  <p><strong>Choose the right data visualization to represent your data:</strong> Dashboards are meant to convey high-importance information at a glance, so <span class="highlight">choosing the wrong type of data viz can hinder that.</span>
+  </br></br><strong>Design consistency helps both the internal teams and the end-user:</strong> Each new widget or minor update came with slightly different design criteria and design guidelines for the company were still in the early stages, but <span class="highlight">consistency in design both helped the designers and engineers focus on the meat of the product and also gave the end-user a streamlined user experience.</span>
+  </p>
+</div>
+
+<div class="finaldesign" style="float: left;">
+    <p id="15"><strong>Fall 2018 Update:</strong> There are now four <a href="https://blog.opsramp.com/role-based-dashboards">role-based dashboards</a> that are customizable with a wide range of out-of-the-box widgets, cloud cost widgets included.</p>
+</div>
+
+
+
+<script src="js/jquery.min.jis"></script> 
+<script src="js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+  <script>
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+      });
+  </script>
+ </body>
+
+</html>

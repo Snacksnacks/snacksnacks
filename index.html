@@ -22,85 +22,52 @@
   </head>
   
 <body>
-
-
   <div class="col-left">
     <div class="bio">
-      <h1>
-      I'm glad you're here!<br/>
-      <h2>I'm <span style="color: #0000ff73">Shawna Cheng</span></h2>
-      </h1>
-      <p id="bio-p">Currently, I'm a product designer @Stockwell AI in Oakland, CA. In the early hours of the morning, I dabble in internet art.<br/><br/>
-        I graduated with a BFA in Industrial Design @RISD. 
-      </p> 
-      
-      <a href="https://https://www.linkedin.com/in/shawnacheng/" target="_blank"><i class="fa fa-linkedin font-awesome-align" style="font-size:24px; margin:0 10px 0 0; "></i></a>
-      <a href="resume.pdf" target="_blank"><i class="fa fa-file-text font-awesome-align" style="font-size:24px; margin:0 10px 0 0; "></i></a>
-      <a href="mailto:scheng02@alumni.risd.edu" target="_blank"><i class="fa fa-envelope font-awesome-align" style="font-size:24px; margin:0 10px 0 0; "></i>
-                </a></div>
+        <h1>Glad you're here!</h1>
+        <p style="font-size: 18px; line-height: 1.5em">I'm <strong><span style="color:rgba(0, 0, 0, 0.753);">Shawna Cheng</span></strong>,  a Product Designer <a href="https://www.stockwell.ai" target="_blank">@Stockwell.AI</a> and a <a href="https://www.instagram.com/risdid/?hl=en" target="_blank">RISD Industrial Design</a> alum. In the early hours of the morning, I dabble in internet art.
+        <br/><br/>
+        </p>
+      <span class="links">
+        <a href="https://www.linkedin.com/in/shawnacheng/" target="_blank"><i class="fa fa-linkedin font-awesome-align" style="font-size:24px; margin:0 12px 0 0; "></i></a>
+        <a href="images/ChengShawna_LatestResume.pdf" target="_blank"><i class="fa fa-file-text font-awesome-align" style="font-size:24px; margin:0 12px 0 0; "></i></a>
+        <a href="mailto:scheng02@alumni.risd.edu" target="_blank"><i class="fa fa-envelope font-awesome-align" style="font-size:24px; margin:0 12px 0 0; "></i></a>
+        <a href="https://www.instagram.com/snacks00/" target="_blank"><i class="fa fa-instagram font-awesome-align" style="font-size:24px; margin:0 12px 0 0; "></i>
+                  </a></span>
+              
+              </div>
     
     </div>
     </div>
 
   <div class="col-right">
     <div class="work">
-      
-      <div class="project" id="project1">
-        <a class="animsition-link" href="alexa-on-tv.html">
-                <img src="img/alexa.png" width="100%" title="Alexa on TV">
-                <div class="caption">
-                    <h2>Itinerary book</h2>
-                    <p>An itinerary builder and aggregator site.</p>
-                </div>
-                </a>
+
+      <div class="project" id="project1" onclick="myhref('inference-model.html');" style="background-image: url(images/Infmodel.png);  background-size: cover; background-repeat: no-repeat;">
       </div>
 
 
-      <div class="project" id="project2">
-        <a class="animsition-link" href="servicemap.html">
-                <img src="img/smap.jpg" width="100%" title="Service Map">
-                <div class="caption">
-                    <h2>Service Map</h2>
-                    <p>A visual introduction to probability and statistics.</p>
-                </div>
-                </a>
+      <div class="project" id="project2" onclick="myhref('cloudcost-dashboard.html');" style="background-image: url(images/Cloud_dash.png); background-size: cover; background-repeat: no-repeat;">
       </div>
 
 
-      <div class="project" id="project3">
-        <a class="animsition-link " href="ec.html">
-                <img src="img/ec.png" width="100%"  title="ec automation">
-                <div class="caption">
-                    <h2>Automation in the E&C industry</h2>
-                    <p>Cut costs and time from the </p>
-                </div>
-                </a>
-      </div>
-
-      <div class="project" id="project4">
-        <a class="animsition-link " href="scio.html">
-                <img src="img/ya0.png" width="100%" title="scio">
-                <div class="caption">
-                    <h2>Spectrometers for developing countries</h2>
-                    <p>Safer meds</p>
-                </div>
-                </a>
+      <div class="project" id="project3" onclick="myhref('itinerary-book.html');" style="background-image: url(images/ibookhero.png); background-size: cover; background-repeat: no-repeat;">
       </div>
 
 
-      <div class="project" id="project5">
-        <a class="animsition-link" href="creative.html">
-                <img src="img/other.png" width="100%" title="Internet art">
-                <div class="caption">
-                    <h2>Internet art</h2>
-                    <p> Delve into the void of internet-y arts and craft→ </p>
-                </div>
-                </a>
+      <div class="project" id="project3" onclick="myhref('reddit-flarf.html');" style="background-image: url(images/redditflarfhero.png); background-size: cover; background-repeat: no-repeat;">
       </div>
+
+
+      <div class="project" id="project3" onclick="myhref('clippy.html');" style="background-image: url(images/clippyhero.png); background-size: cover; background-repeat: no-repeat;">
+      </div>
+
+
+
 
       <div style="text-align: center;">
         <div class="footer">
-          <p>Designed &amp; coded with &hearts; by Shawna<br/> Last updated: July 2019</p>
+          <p>Last updated: <a href="https://github.com/Snacksnacks" style="padding-bottom:2em;">August 2019</a></p>
         </div>
       </div>
 
@@ -108,7 +75,11 @@
   </div>
 
   </div>
-  
+  <script type="text/javascript">
+    function myhref(web){
+      window.location.href = web;
+    }
+  </script>
   <script src="js/jquery.min.jis"></script> 
   <script src="js/bootstrap.min.js"></script>
   

@@ -1,0 +1,27 @@
+a(href="#maincontent").sr-visible.sr-focusable Skip to content
+
+nav(role="navigation")#js-nav
+	ul.navbar.container
+		li.navbar__title
+			a(href="#") AppTitle
+		li.navbar__button 
+			button(aria-label="Open Menu")#js-navbar-btn 
+				span.sr-visible MENU
+				span(aria-hidden="true").icon-open &#9776;
+				span(aria-hidden="true").icon-close &#10005;
+		li(role="menu").navbar__menu#js-links
+			ul.navbar__menu__links#js-menu
+				li(role="none")
+					a(href="#" role="menuitem") Features
+				li(role="none")
+					a(href="#" role="menuitem") Pricing
+				li(role="none")
+					a(href="#" role="menuitem") Contact
+				li(role="none")
+					a(href="#" role="menuitem") Login
+
+header(role="banner").container 
+	h1 Top Navbar Demo. Resize window container to see mobile menu appear. 
+main(role="main")#maincontent.container
+	p Responsive top navbar for mobile and desktop screens. Requires JS and CSS3.
+			
