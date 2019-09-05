@@ -20,10 +20,11 @@
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
     
   </head>
-  
+
 <body>
   <div class="col-left">
     <div class="bio">
+        <div><a href="#" class="tooltip-right" data-tooltip="Drag or scroll to rotate!"><canvas class="zdog-canvas" width="240" height="240"></canvas></a></div>
         <h1>Glad you're here!</h1>
         <p style="font-size: 18px; line-height: 1.5em">I'm <strong><span style="color:rgba(0, 0, 0, 0.753);">Shawna Cheng</span></strong>,  a Product Designer <a href="https://www.stockwell.ai" target="_blank">@Stockwell.AI</a> and a <a href="https://www.instagram.com/risdid/?hl=en" target="_blank">RISD Industrial Design</a> alum. In the early hours of the morning, I dabble in internet art.
         <br/><br/>
@@ -34,18 +35,12 @@
         <a href="mailto:scheng02@alumni.risd.edu" target="_blank"><i class="fa fa-envelope font-awesome-align" style="font-size:24px; margin:0 12px 0 0; "></i></a>
         <a href="https://www.instagram.com/snacks.sc/" target="_blank"><i class="fa fa-instagram font-awesome-align" style="font-size:24px; margin:0 12px 0 0; "></i>
                   </a></span>
-      <!-- <div>
-          <a href="images/ChengShawna_LatestResume.pdf" target="_blank">Resume -></a>
-          <a href="images/ChengShawna_LatestResume.pdf" target="_blank">About -></a>
-      </div> -->
-              </div>
-    
+  
     </div>
-    </div>
+  </div>
 
   <div class="col-right">
     <div class="work">
-
       <div class="project" id="project1" onclick="myhref('inference-model.html');" style="background-image: url(images/Infmodel.png);  background-size: cover; background-repeat: no-repeat;">
       </div>
 
@@ -70,7 +65,7 @@
 
       <div style="text-align: center;">
         <div class="footer">
-          <p>Last updated: <a href="https://github.com/Snacksnacks" style="padding-bottom:2em;">August 2019</a></p>
+          <p>Last updated: <a href="https://github.com/Snacksnacks" style="padding-bottom:2em;">September 2019</a></p>
         </div>
       </div>
 
@@ -78,11 +73,15 @@
   </div>
 
   </div>
+  
   <script type="text/javascript">
     function myhref(web){
       window.location.href = web;
     }
   </script>
+<script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+<script type="text/javascript" src="zdog.js"></script>
+  
   <script src="js/jquery.min.jis"></script> 
   <script src="js/bootstrap.min.js"></script>
   
