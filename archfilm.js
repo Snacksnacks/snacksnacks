@@ -12,8 +12,8 @@ var svG = d3.select("#Scatterplot")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// Create data ******beep boop can't figure out how to import csv
-var data = [ {yearFilmed:1920, yearBuilt:1920, genre:"Comedy"}, {yearFilmed:1940, yearBuilt:1990, genre:"Comedy"}, {yearFilmed:1980, yearBuilt:1950, genre:"Drama"} ]
+// beep boop read data from csv
+d3.csv("https://raw.githubusercontent.com/Snacksnacks/snacksnacks.github.io/master/archfilm.csv", function(data){
 
 // X scale and Axis
 var x = d3.scaleLinear()
@@ -50,3 +50,5 @@ svG
 var myColor = d3.scaleOrdinal()
 .domain(["Comedy", "Drama"])
 .range(d3.schemeSet1);
+
+});
