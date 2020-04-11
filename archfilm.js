@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 40, bottom: 30, left: 40},
+var margin = {top: 20, right: 40, bottom: 30, left: 40},
     width = 500 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -13,11 +13,40 @@ var svG = d3.select("#Scatterplot")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+const colorValue = d => d.archStyle;
 
-const colorValue = d => d.filmGenre;
+
 
 // beep boop read data from csv
 d3.csv("https://raw.githubusercontent.com/Snacksnacks/snacksnacks.github.io/master/archfilm.csv", function(data){
+
+// Add tooltip
+// it's invisible and its position/contents are defined during mouseover
+var tooltip = d3.select("#Scatterplot").append("div")
+  .attr("class", "tooltip")
+  .style("opacity", 0);
+
+// tooltip mouseover event handler
+var tipMouseover = function(d) {
+var color = colorScale(d.archStyle);
+var html  = "<span style='color:" + color + ";'>" + d.archSite + "</span> built in " + d.yearBuilt + "<br/>" +
+            d.film + "</b> released in " + d.yearFilmed + "</span><br/>" +
+            "<b>";
+
+tooltip.html(html)
+    .style("left", (d3.event.pageX + 15) + "px")
+    .style("top", (d3.event.pageY - 28) + "px")
+    .transition()
+    .duration(200) // ms
+    .style("opacity", .9) // started as 0!
+
+              };
+// tooltip mouseout event handler
+var tipMouseout = function(d) {
+    tooltip.transition()
+        .duration(300) // ms
+        .style("opacity", 0); // don't care about position!
+};
 
 // X scale and Axis
 var x = d3.scaleLinear()
@@ -49,7 +78,9 @@ svG
   .append("circle")
     .attr("cx", function(d){ return x(d.yearFilmed) })
     .attr("cy", function(d){ return y(d.yearBuilt) })
-    .attr("r", 7)
+    .attr("r", 10)
     .attr('fill', d => colorScale(colorValue(d)))
+    .on("mouseover", tipMouseover)
+    .on("mouseout", tipMouseout);
 
   });
