@@ -1,0 +1,52 @@
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 40, bottom: 30, left: 40},
+    width = 500 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svG = d3.select("#Scatterplot")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Create data ******beep boop can't figure out how to import csv
+var data = [ {yearFilmed:1920, yearBuilt:1920, genre:"Comedy"}, {yearFilmed:1940, yearBuilt:1990, genre:"Comedy"}, {yearFilmed:1980, yearBuilt:1950, genre:"Drama"} ]
+
+// X scale and Axis
+var x = d3.scaleLinear()
+  .domain([1900,d3.extent(data, d=> d.yearFilmed)[1]]) // Min and max values of the x axis is from dataset
+  .range([0, width]); // Define the x range based on the dimensions of the chart
+svG
+  .append('g')
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x));
+
+// X scale and Axis
+var y = d3.scaleLinear()
+  .domain([1900,d3.extent(data, d=> d.yearBuilt)[1]]) // Min and max values of the y axis is from dataset
+  .range([height, 0]); // Define the y range based on the dimensions of the chart
+svG
+  .append('g')
+  .call(d3.axisLeft(y));
+
+
+
+// Add 3 dots for 0, 50 and 100%
+svG
+  .selectAll("whatever")
+  .data(data)
+  .enter()
+  .append("circle")
+    .attr("cx", function(d){ return x(d.yearFilmed) })
+    .attr("cy", function(d){ return y(d.yearBuilt) })
+    .attr("r", 7)
+    style("fill", function (d) { return myColor(d.genre); } )
+
+
+    // Add a scale for bubble color
+var myColor = d3.scaleOrdinal()
+.domain(["Comedy", "Drama"])
+.range(d3.schemeSet1);
