@@ -17,7 +17,7 @@
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
     <style>
-      body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+      body { margin:0;top:0;right:0;bottom:0;left:0; }
 
       .tooltip {
             position: absolute;
@@ -41,7 +41,7 @@
   </header>
 
 <body style="background-color: white;">
-  
+
 <div class="container">
             <nav class="toc toc-right js-toc relative z-1 transition--300 absolute pa4"></nav>
             <div class="content js-toc-content pa4"><h1 class="dn"></h1>
@@ -49,13 +49,16 @@
 <div class="vp">
 <div class="page">
     <div class="wrap">
-        <div class="invis-border" style="margin-top:5em; text-align:center;">
+        <div class="intro-stats" style="margin-top:5em; text-align:center;">
             <h1>Architecture in Film</h1>
                     <p> <strong>Case Study:</strong> An exploration of arch styles and film genres <span style="color:#0000ff73;">/</span> <strong>Tools:</strong> d3.js</p> 
         </div>
 
         <div id = "Scatterplot" class="intro-stats" style="margin-top: 5em;">
           <h2 id="1">A scatterplot to make apparent any possible comparisons</h2>
+          <button id="archStyle">Get arch style</button>
+          <button id="filmGenre">Get genre</button></br>
+
           <script src="https://d3js.org/d3.v4.min.js" meta charset="utf-8"></script>
           <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
           <script type="text/javascript" src="archfilm.js" defer></script>

@@ -13,51 +13,44 @@ var svG = d3.select("#Scatterplot")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-const colorValue = d => d.archStyle;
-
-
-
 // beep boop read data from csv
 d3.csv("https://raw.githubusercontent.com/Snacksnacks/snacksnacks.github.io/master/archfilm.csv", function(data){
 
-// Add tooltip
-// it's invisible and its position/contents are defined during mouseover
+
+// add tooltip
 var tooltip = d3.select("#Scatterplot").append("div")
   .attr("class", "tooltip")
   .style("opacity", 0);
 
 // tooltip mouseover event handler
 var tipMouseover = function(d) {
-var color = colorScale(d.archStyle);
-var html  = "<span style='color:" + color + ";'>" + d.archSite + "</span> built in " + d.yearBuilt + "<br/>" +
-            d.film + "</b> released in " + d.yearFilmed + "</span><br/>" +
+var html  = "<span style='color:" + colorScale(d.archStyle) + ";'>" + d.archSite + "</span> built in " + d.yearBuilt + "<br/>" +
+            "<span style='color:" + colorScale(d.filmGenre) + ";'>" + d.film + "</span> released in " + d.yearFilmed + " <br/>" +
             "<b>";
 
-tooltip.html(html)
-    .style("left", (d3.event.pageX + 15) + "px")
-    .style("top", (d3.event.pageY - 28) + "px")
+    tooltip.html(html)
     .transition()
-    .duration(200) // ms
-    .style("opacity", .9) // started as 0!
+    .duration(100)
+    .style("opacity", .9)
 
               };
 // tooltip mouseout event handler
 var tipMouseout = function(d) {
     tooltip.transition()
-        .duration(300) // ms
-        .style("opacity", 0); // don't care about position!
+        .duration(300)
+        .style("opacity", 0);
 };
 
 // X scale and Axis
 var x = d3.scaleLinear()
   .domain([1900,d3.extent(data, d=> d.yearFilmed)[1]]) // Min and max values of the x axis is from dataset
   .range([0, width]); // Define the x range based on the dimensions of the chart
-  // .format("04d");
-  
+  // .format("04d"); 
 svG
   .append('g')
   .attr("transform", "translate(0," + height + ")")
   .call(d3.axisBottom(x));
+
 
 // Y scale and Axis
 var y = d3.scaleLinear()
@@ -67,10 +60,12 @@ svG
   .append('g')
   .call(d3.axisLeft(y));
 
-  const colorScale = d3.scaleOrdinal()
+// assign colors
+const colorScale = d3.scaleOrdinal()
   .range(d3.schemeCategory10);
 
-// Add dots
+
+// add dots
 svG
   .selectAll("whatever")
   .data(data)
@@ -79,8 +74,22 @@ svG
     .attr("cx", function(d){ return x(d.yearFilmed) })
     .attr("cy", function(d){ return y(d.yearBuilt) })
     .attr("r", 10)
-    .attr('fill', d => colorScale(colorValue(d)))
+    .attr('fill', d => colorScale(d.filmGenre))
     .on("mouseover", tipMouseover)
     .on("mouseout", tipMouseout);
+
+// change color of dots based on which button is clicked
+d3.select("#archStyle").on("click", function() {
+d3.selectAll("circle")
+  .transition()
+  .attr('fill', d => colorScale(d.archStyle))
+});
+
+d3.select("#filmGenre").on("click", function() {
+d3.selectAll("circle")
+  .transition()
+  .attr('fill', d => colorScale(d.filmGenre))
+});
+
 
   });
