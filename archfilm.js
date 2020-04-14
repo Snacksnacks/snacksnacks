@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
-var margin = {top: 20, right: 40, bottom: 30, left: 40},
-    width = 500 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 100, bottom: 30, left: 40},
+    width = 500 - margin.left + margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 
 // append the svg object to the id of the page
@@ -14,7 +14,7 @@ var svG = d3.select("#Scatterplot")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // beep boop read data from csv
-d3.csv("https://raw.githubusercontent.com/Snacksnacks/snacksnacks.github.io/master/archfilm.csv", function(data){
+var data = d3.csv("https://raw.githubusercontent.com/Snacksnacks/snacksnacks.github.io/master/archfilm.csv", function(data){
 
 
 // add tooltip
@@ -78,11 +78,40 @@ svG
     .on("mouseover", tipMouseover)
     .on("mouseout", tipMouseout);
 
-// change color of dots based on which button is clicked
-d3.select("#archStyle").on("click", function() {
+    //get rid of dupes in data?
+var uniqueArray = data.filter(function(item, pos, self){
+      return self.indexOf(item) == pos;
+    });
+
+// filter by arch style
+d3.select("#archStyle").on("click", function() { 
 d3.selectAll("circle")
   .transition()
-  .attr('fill', d => colorScale(d.archStyle))
+  .attr('fill', d => colorScale(d.archStyle)); // change color of dots based on which button is clicked. In this case, it's arch style
+  svG.append("text")
+  .text("Colors are by Styles of Architecture")
+  .attr("x", 20)
+  // .style("font-size", "12pt")
+var legendRect = svG.selectAll(".rect")
+.data(data)
+.enter()
+.append("g")
+.classed('rect', true)
+legendRect.append("rect")
+.attr("x", width+20)
+.attr("transform", function(d, i) { return "translate(0, " + i * 20 + ")"; })
+.attr("width", 18)
+.attr("height", 18)
+.attr("fill", d => colorScale(d.archStyle))
+legendRect.append("text")
+.attr("y", 15)
+.attr("x", width+35)
+.attr("transform", function(d, i) { return "translate(0, " + i * 20 + ")"; })
+.text(function(d) {return d.archStyle;})
+// append a group of rects
+// rects are colored by d => colorScale(d.archStyle)
+// append text to each group of rects 
+// text is defined by corresponding archStyle
 });
 
 d3.select("#filmGenre").on("click", function() {
@@ -90,6 +119,5 @@ d3.selectAll("circle")
   .transition()
   .attr('fill', d => colorScale(d.filmGenre))
 });
-
 
   });
