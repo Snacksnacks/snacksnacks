@@ -642,3 +642,44 @@ a:hover {
   text-align: left;
   color: gray;
 }
+
+#archStyl, #filmGenr {
+	background-color:transparent;
+	-webkit-border-top-left-radius:8px;
+	-moz-border-radius-topleft:8px;
+	border-top-left-radius:8px;
+	-webkit-border-top-right-radius:8px;
+	-moz-border-radius-topright:8px;
+	border-top-right-radius:8px;
+	-webkit-border-bottom-right-radius:8px;
+	-moz-border-radius-bottomright:8px;
+	border-bottom-right-radius:8px;
+	-webkit-border-bottom-left-radius:8px;
+	-moz-border-radius-bottomleft:8px;
+	border-bottom-left-radius:8px;
+text-indent:0;
+	border:1px solid #5e5e5e;
+	display:inline-block;
+	color:#4d4d4d;
+	font-family:arial;
+	font-size:15px;
+	font-weight:normal;
+	font-style:normal;
+height:37px;
+	line-height:37px;
+width:158px;
+	text-decoration:none;
+	text-align:center;
+}
+#archStyl:hover, #filmGenr:hover {
+  background: #aac1ff;
+}
+#archStyl:active, #filmGenr:active {
+  background: #6e95ff;
+}
+#archStyl:focus, #filmGenr:focus {
+  background: #aac1ff;
+  border: 1px #6e95ff;
+  color: #2f4379;
+  outline: 0px;
+}

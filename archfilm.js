@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-var margin = {top: 20, right: 100, bottom: 30, left: 40},
+var margin = {top: 20, right: 140, bottom: 30, left: 40},
     width = 500 - margin.left + margin.right,
     height = 400 - margin.top - margin.bottom;
 
@@ -32,20 +32,19 @@ var html  = "<span style='color:" + colorScale(d.archStyle) + ";'>" + d.archSite
     .transition()
     .duration(100)
     .style("opacity", .9)
+};
 
-              };
 // tooltip mouseout event handler
 var tipMouseout = function(d) {
     tooltip.transition()
-        .duration(300)
-        .style("opacity", 0);
+    .duration(300)
+    .style("opacity", 0);
 };
 
 // X scale and Axis
 var x = d3.scaleLinear()
   .domain([1900,d3.extent(data, d=> d.yearFilmed)[1]]) // Min and max values of the x axis is from dataset
   .range([0, width]); // Define the x range based on the dimensions of the chart
-  // .format("04d"); 
 svG
   .append('g')
   .attr("transform", "translate(0," + height + ")")
@@ -65,59 +64,73 @@ const colorScale = d3.scaleOrdinal()
   .range(d3.schemeCategory10);
 
 
-// add dots
-svG
-  .selectAll("whatever")
-  .data(data)
-  .enter()
-  .append("circle")
+// change legend and plotted points when you click either buttons  
+var plot = (data, svG) =>{
+// add points
+var circle = svG.selectAll('circle')
+    .data(data);
+circle
+    .enter()
+    .append("circle")
     .attr("cx", function(d){ return x(d.yearFilmed) })
     .attr("cy", function(d){ return y(d.yearBuilt) })
     .attr("r", 10)
     .attr('fill', d => colorScale(d.filmGenre))
     .on("mouseover", tipMouseover)
-    .on("mouseout", tipMouseout);
+    .on("mouseout", tipMouseout);    
+// add legend
+var rekt = svG.selectAll("rect")
+                .data(data)
+                .attr("class", "legend");
+// display filmGenre legend colorsfirst
+rekt
+    .enter()
+    .append('rect')
+    .attr("x", width+20)
+    .attr("transform", function(d, i) { return "translate(0, " + i * 20 + ")"; })
+    .attr("width", 18)
+    .attr("height", 18)
+    .attr("fill", d => colorScale(d.filmGenre));
+//display filmGenre text first
+svG.selectAll("text.legend")
+rekt.enter()
+    .append("text")
+    .attr("class", "legend") // create a class for legend text. so when you make changes to it, other text on this pg won't be affected
+    .attr("y", 15)
+    .attr("x", width+45)
+    .attr("transform", function(d, i) { return "translate(0, " + i * 20 + ")"; })
+    .text(function(d) {return d.filmGenre;})
+// redraw the legend everytime you click either button
+rekt
+    .exit()
+    .remove()
+};
+// when you click archStyl button, change dots + legend
+var archStyl = () => {
+    d3.selectAll('rect')
+    .attr("fill", d => colorScale(d.archStyle))
+    d3.selectAll('text.legend')
+    .text(function(d) {return d.archStyle;});
+    d3.selectAll("circle")
+    .transition()
+    .attr('fill', d => colorScale(d.archStyle)); 
+    plot(data, svG);
+};
+// when you click archStyl button, change dots + legend
+var filmGenr = () => {
+    d3.selectAll('rect')
+    .attr("fill", d => colorScale(d.filmGenre))
+    d3.selectAll('text.legend')
+    .text(function(d) {return d.filmGenre;});
+    d3.selectAll("circle")
+    .transition()
+    .attr('fill', d => colorScale(d.filmGenre)); 
+    plot(data, svG);
+};
 
-    //get rid of dupes in data?
-var uniqueArray = data.filter(function(item, pos, self){
-      return self.indexOf(item) == pos;
-    });
+document.getElementById('archStyl').addEventListener('click', archStyl);
+document.getElementById('filmGenr').addEventListener('click', filmGenr);
 
-// filter by arch style
-d3.select("#archStyle").on("click", function() { 
-d3.selectAll("circle")
-  .transition()
-  .attr('fill', d => colorScale(d.archStyle)); // change color of dots based on which button is clicked. In this case, it's arch style
-  svG.append("text")
-  .text("Colors are by Styles of Architecture")
-  .attr("x", 20)
-  // .style("font-size", "12pt")
-var legendRect = svG.selectAll(".rect")
-.data(data)
-.enter()
-.append("g")
-.classed('rect', true)
-legendRect.append("rect")
-.attr("x", width+20)
-.attr("transform", function(d, i) { return "translate(0, " + i * 20 + ")"; })
-.attr("width", 18)
-.attr("height", 18)
-.attr("fill", d => colorScale(d.archStyle))
-legendRect.append("text")
-.attr("y", 15)
-.attr("x", width+35)
-.attr("transform", function(d, i) { return "translate(0, " + i * 20 + ")"; })
-.text(function(d) {return d.archStyle;})
-// append a group of rects
-// rects are colored by d => colorScale(d.archStyle)
-// append text to each group of rects 
-// text is defined by corresponding archStyle
+plot(data, svG);
+
 });
-
-d3.select("#filmGenre").on("click", function() {
-d3.selectAll("circle")
-  .transition()
-  .attr('fill', d => colorScale(d.filmGenre))
-});
-
-  });
